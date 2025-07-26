@@ -17,6 +17,9 @@
 * Utility is writen in Powershell which is easily edited to change features
 * A compiled version to an .exe files is included using PS2EXE
 
+##Update
+* Corrected scan size to take into account resolution
+
 
 
 

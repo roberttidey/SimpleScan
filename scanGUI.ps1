@@ -149,6 +149,7 @@ function ConvertToPdf {
 		
 		#Get Mode
 		$mode = @(1,2,4,1,2,4)[$ModeComboBox.SelectedIndex]
+		#sizes at 300 resolution
 		$xSize = @(2490,2490,2490,2550,2550,2550)[$ModeComboBox.SelectedIndex]
 		$ySize = @(3510,3510,3510,3300,3300,3300)[$ModeComboBox.SelectedIndex]
 
@@ -167,8 +168,9 @@ function ConvertToPdf {
 		$item.properties("6146").Value = $mode
 		$item.properties("6147").Value = $resolution
 		$item.properties("6148").Value = $resolution
-		$item.properties("6151").Value = $xSize
-		$item.properties("6152").Value = $ySize
+		#Adjust sizes taking into account resolution
+		$item.properties("6151").Value = $xSize * $resolution / 300
+		$item.properties("6152").Value = $ySize * $resolution / 300
 		$image = $item.Transfer($wiaFormat) 
 		if($image.FormatID -ne $wiaFormat) {
 			$imageProcess = new-object -ComObject WIA.ImageProcess
